@@ -1,0 +1,27 @@
+.button-tags:hover {
+    background-color: #ececec;
+    border-color: #c7c7c7;
+}
+
+.button-comment:hover {
+    background-color: #eeeeee;
+}
+
+.button-save:hover {
+    background-color: #eeeeee;
+}
+
+.button-tab:hover {
+    color: rgb(59, 31, 218);
+    background-color: #ffffff;
+    cursor: pointer;
+}
+
+.button-tab {
+    color: black;
+}
+
+.active {
+    font-weight: 700;
+    color: black;
+}
