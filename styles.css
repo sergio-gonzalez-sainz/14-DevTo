@@ -25,3 +25,24 @@
     font-weight: 700;
     color: black;
 }
+
+::-webkit-input-placeholder #postTitle {
+
+    color: rgb(102, 102, 102);
+    font-weight: 700;
+    font-size: 3rem;
+
+}
+
+#postTitle {
+    color: rgb(102, 102, 102);
+    font-weight: 700;
+    font-size: 3rem;
+    height: 4rem;
+}
+
+
+
+input:focus {
+    outline: none;
+}
