@@ -3,31 +3,6 @@ let fecha = new Date();
 const buscarInput = document.querySelector('input');
 const mainContainer = document.getElementById('mainContainer');
 
-let tagsArray = ['#1', '#2', '#3'];
-let post = {
-    titulo: "post diciembre del 2021",
-    imagenPortada: "https://media.bitdegree.org/storage/media/images/2018/11/What-Is-A-Full-Stack-Developer-and-Everything-You-Need-to-Know-to-Start.jpg",
-    contenido: "este es un texto de ejemplo",
-    fechaCreacion: new Date("december 1 2021"),
-    tags: tagsArray
-};
-
-
-
-const crearPost = (post) => {
-    postPost(
-        post.titulo,
-        post.imagenPortada,
-        post.contenido,
-        post.fechaCreacion,
-        post.tags,
-        (body) => {
-            alert(body.name);
-        }
-    )
-}
-
-
 const buscarPost = e => {
     e.preventDefault();
     const terminoBusqueda = buscarInput.value;
@@ -114,13 +89,19 @@ const creaCardTop = (e) => {
     e.preventDefault();
     cardsTop.innerHTML = '';
     getPost((body) => {
+        // let keysBody = Object.keys(body);
+        // console.log(keysBody);
         let arregloPost = Object.values(body);
+        // console.log(arregloPost);
+        // let entriesBody = Object.entries(body);
+        // console.log(entriesBody);
+        // console.log(entriesBody[0][0]);  //seguir investigando esto..
 
-        arregloPost.forEach((post, index) => {
+        arregloPost.forEach((post, index, array) => {
             let fechaPost = new Date(post.fechaCreacion);
             fechaPost = fechaPost.toDateString();
             let imagenCard = '';
-            if (index == 0) {
+            if (index == (array.length - 1)) {
                 imagenCard = `
                 <img src = ${post.imagenPortada}
                 class = "card-img-top"
@@ -129,7 +110,7 @@ const creaCardTop = (e) => {
             } else {
                 imagenCard = '';
             }
-            let card = `  
+            let card = `    
                             <div class="card mb-3" onclick="abrirPost('${post.titulo}')">
                                 <a class="text-decoration-none text-dark" href="#">
                                    ${imagenCard}
@@ -150,6 +131,7 @@ const creaCardTop = (e) => {
                                                         class="btn fw-light button-tags">${post.tags[1]}</button>
                                                     <button type="button"
                                                         class="btn fw-light button-tags">${post.tags[2]}</button>
+                                                    <button type="button" class="btn fw-light button-tags">${post.tags[3]}</button>
                                                 </div>
                                                 <div class="d-flex justify-content-between">
                                                     <div class="mt-2">
@@ -190,7 +172,7 @@ const creaCardTop = (e) => {
                             </div>
                         `;
 
-            cardsTop.insertAdjacentHTML('beforeend', card);
+            cardsTop.insertAdjacentHTML('afterbegin', card);
         });
     })
 }

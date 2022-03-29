@@ -46,16 +46,17 @@
     <!-- crear post -->
     <div class="d-flex justify-content-center bg-light">
         <div class="col-6">
-            <div class="bg-white">
-                <button class=" ms-4 btn btn-outline-secondary" type="button">Add a cover image</button>
-                <input name="ptitle" id="postTitle" class="col-10 border-0 ms-3"
-                    placeholder="New post title here..."></input>
-                <input name="ptags" id="postTags" class="col-10 border-0 ms-3"
-                    placeholder="Add up to 4 tags..."></input>
-                <input name="pdate" id="postDate" type="date" class="col-3 border-0 ms-3">Creation Date</input>
-                <textarea name="pbody" id="postBody" cols="30" rows="10"></textarea>
-                <button class="btn btn-primary ms-3" type="submit">Publish</button>
-            </div>
+            <form class="bg-white p-0" onsubmit="crearPost(event);">
+                <button class=" ms-4 btn btn-outline-secondary" type="button" onclick="addCoverImage(event);">Add a
+                    cover image</button>
+                <input name="ptitle" id="postTitle" class="col-10 border-0 ms-3" placeholder="New post title here..."
+                    required></input>
+                <input name="ptags" id="postTags" class="col-10 border-0 ms-3" placeholder="Add up to 4 tags..."
+                    required></input>
+                <input name="pdate" id="postDate" type="date" class="col-3 border-0 ms-3" required>Creation Date</input>
+                <textarea name="pbody" id="postBody"></textarea>
+                <button class="btn btn-primary ms-3" type="submit" class="p-3">Publish</button>
+            </form>
 
         </div>
 

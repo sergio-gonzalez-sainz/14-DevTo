@@ -74,6 +74,7 @@ const abrirPost = (titulo) => {
                                     <button type="button" class="btn fw-light button-tags">${post.tags[0]}</button>
                                     <button type="button" class="btn fw-light button-tags">${post.tags[1]}</button>
                                     <button type="button" class="btn fw-light button-tags">${post.tags[2]}</button>
+                                    <button type="button" class="btn fw-light button-tags">${post.tags[3]}</button>
                                 </div>
                                 <div class="d-flex justify-content-between">
                                     <p>${post.contenido}</p>
