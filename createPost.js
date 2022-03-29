@@ -4,25 +4,21 @@ let editor = new Editor({
 });
 editor.render();
 
+var imagenUrl = '';
+const addCoverImage = (e) => {
+    e.preventDefault();
+    imagenUrl = prompt('Image URL:');
+}
 
+const crearPost = (e) => {
+    e.preventDefault();
+    let post = {};
+    post['titulo'] = document.getElementById('postTitle').value;
+    post['imagenPortada'] = imagenUrl;
+    post['contenido'] = editor.codemirror.getValue();
+    post['fechaCreacion'] = document.getElementById('postDate').value;
+    post['tags'] = document.getElementById('postTags').value.split(',');
 
-let fecha = new Date();
-
-const buscarInput = document.querySelector('input');
-const mainContainer = document.getElementById('mainContainer');
-
-let tagsArray = ['#1', '#2', '#3'];
-let post = {
-    titulo: "post diciembre del 2021",
-    imagenPortada: "https://media.bitdegree.org/storage/media/images/2018/11/What-Is-A-Full-Stack-Developer-and-Everything-You-Need-to-Know-to-Start.jpg",
-    contenido: "este es un texto de ejemplo",
-    fechaCreacion: new Date("december 1 2021"),
-    tags: tagsArray
-};
-
-
-
-const crearPost = (post) => {
     postPost(
         post.titulo,
         post.imagenPortada,
@@ -30,7 +26,7 @@ const crearPost = (post) => {
         post.fechaCreacion,
         post.tags,
         (body) => {
-            alert(body.name);
+            alert('Post published successfully!');
         }
     )
 }

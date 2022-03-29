@@ -46,3 +46,7 @@
 input:focus {
     outline: none;
 }
+
+#postBody {
+    display: none;
+}
