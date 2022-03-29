@@ -42,7 +42,7 @@ const buscarPost = e => {
         resultadoBusqueda.forEach(post => {
             let fechaPost = new Date(post.fechaCreacion);
             fechaPost = fechaPost.toDateString();
-            const card = `<div class="container col-sm-6 mt-3">
+            const card = `<div class="container col-sm-6 mt-3" onclick="abrirPost('${post.titulo}')">
                             <div class="card my-3">
                                 <a class="text-decoration-none text-dark" href="#">
                                     <div class="card-body px-0">
@@ -130,7 +130,7 @@ const creaCardTop = (e) => {
                 imagenCard = '';
             }
             let card = `  
-                            <div class="card mb-3">
+                            <div class="card mb-3" onclick="abrirPost('${post.titulo}')">
                                 <a class="text-decoration-none text-dark" href="#">
                                    ${imagenCard}
                                     <div class="card-body px-0">
