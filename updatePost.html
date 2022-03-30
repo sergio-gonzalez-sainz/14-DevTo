@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="//cdn.jsdelivr.net/editor/0.1.0/editor.css">
     <link rel="stylesheet" href="styles.css">
 
-    <title>Create Post</title>
+    <title>Edit Post</title>
 </head>
 
 <body>
@@ -24,7 +24,7 @@
                     <img src="https://dev-to-uploads.s3.amazonaws.com/uploads/logos/resized_logo_UQww2soKuUsjaOGNB38o.png"
                         alt="Dev.to" width="50" height="40" id="home">
                 </a>
-                <h6 class="pt-2">Create Post</h6>
+                <h6 class="pt-2">Edit Post</h6>
             </div>
             <div>
                 <button type="button" class="btn btn-light mt-2 button-save">Edit</button>
@@ -46,7 +46,7 @@
     <!-- crear post -->
     <div class="d-flex justify-content-center bg-light">
         <div class="col-6">
-            <form class="bg-white p-0" onsubmit="crearPost(event);">
+            <form class="bg-white p-0" onsubmit="updatePost();">
                 <button class=" ms-4 btn btn-outline-secondary" type="button" onclick="addCoverImage(event);">Add a
                     cover image</button>
                 <input name="ptitle" id="postTitle" class="col-10 border-0 ms-3" placeholder="New post title here..."
@@ -54,18 +54,20 @@
                 <input name="ptags" id="postTags" class="col-10 border-0 ms-3" placeholder="Add up to 4 tags..."
                     required></input>
                 <input name="pdate" id="postDate" type="date" class="col-3 border-0 ms-3" required>Creation Date</input>
-                <textarea name="pbody" id="postBody"></textarea>
-                <button class="btn btn-primary ms-3" type="submit" class="p-3">Publish</button>
+                <textarea name="pbody" id="postBodyEdit"></textarea>
+                <button class="btn btn-primary ms-3" type="submit" class="p-3"
+                    onclick="updatePost(event)">Update</button>
             </form>
 
         </div>
 
     </div>
     <!-- fin crear post -->
-    <script src="./firebase.js"></script>
+
     <script src="//cdn.jsdelivr.net/editor/0.1.0/editor.js"></script>
     <script src="//cdn.jsdelivr.net/editor/0.1.0/marked.js"></script>
-    <script src="./createPost.js"></script>
+    <script src="./firebase.js"></script>
+    <script src="./updatePost.js"></script>
 </body>
 
 </html>

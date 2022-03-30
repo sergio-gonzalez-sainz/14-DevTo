@@ -8,10 +8,10 @@ const abrirPost = (titulo) => {
             let fechaPost = new Date(post.fechaCreacion);
             fechaPost = fechaPost.toDateString();
             mainContainer.innerHTML = '';
+            post.contenido = marked.parse(post.contenido);
             const card =
                 `
                     <div class="container d-flex">
-
         <div class="col-1">
             <div class="my-5">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" role="img"
@@ -53,7 +53,6 @@ const abrirPost = (titulo) => {
                     </path>
                 </svg>
             </div>
-
         </div>
         <div class="col-sm-8 mt-3">
             <div class="card my-3">
@@ -76,21 +75,18 @@ const abrirPost = (titulo) => {
                                     <button type="button" class="btn fw-light button-tags">${post.tags[2]}</button>
                                     <button type="button" class="btn fw-light button-tags">${post.tags[3]}</button>
                                 </div>
-                                <div class="d-flex justify-content-between">
-                                    <p>${post.contenido}</p>
+                                <div class = "container col-10 d-flex flex-column p-0 m-0">
+                                ${post.contenido}
                                 </div>
                             </div>
                         </div>
-
                     </div>
                 </a>
             </div>
         </div>
     </div>
-
                 `;
             mainContainer.insertAdjacentHTML('beforeend', card);
         })
-
     })
 }
