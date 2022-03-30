@@ -1,8 +1,9 @@
-let editor = new Editor({
-    element: document.getElementById('postBody'),
+let editor2 = new Editor({
+    element: document.getElementById('postBodyEdit'),
     status: []
 });
-editor.render();
+
+editor2.render();
 
 var imagenUrl = '';
 const addCoverImage = (e) => {
@@ -10,23 +11,31 @@ const addCoverImage = (e) => {
     imagenUrl = prompt('Image URL:');
 }
 
-const crearPost = (e) => {
+const queryParams = new URLSearchParams(window.location.search);
+const id = queryParams.get('id');
+
+
+
+const updatePost = (e) => {
     e.preventDefault();
+
     let post = {};
     post['titulo'] = document.getElementById('postTitle').value;
     post['imagenPortada'] = imagenUrl;
-    post['contenido'] = editor.codemirror.getValue();
+    post['contenido'] = editor2.codemirror.getValue();
     post['fechaCreacion'] = document.getElementById('postDate').value;
     post['tags'] = document.getElementById('postTags').value.split(',');
+    post['fireBaseId'] = id;
 
-    postPost(
+    putPost(
         post.titulo,
         post.imagenPortada,
         post.contenido,
         post.fechaCreacion,
         post.tags,
+        post.fireBaseId,
         (body) => {
-            alert('Post published successfully!');
+            alert('Post updated successfully!');
 
             const delay = setTimeout(reload, 1000);
 
@@ -35,10 +44,4 @@ const crearPost = (e) => {
             }
         }
     )
-}
-
-const delay = setTimeout(reload, 3000);
-
-function reload() {
-    document.getElementById("avatar").click();
 }

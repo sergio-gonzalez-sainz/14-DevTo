@@ -89,14 +89,7 @@ const creaCardTop = (e) => {
     e.preventDefault();
     cardsTop.innerHTML = '';
     getPost((body) => {
-        // let keysBody = Object.keys(body);
-        // console.log(keysBody);
         let arregloPost = Object.values(body);
-        // console.log(arregloPost);
-        // let entriesBody = Object.entries(body);
-        // console.log(entriesBody);
-        // console.log(entriesBody[0][0]);  //seguir investigando esto..
-
         arregloPost.forEach((post, index, array) => {
             let fechaPost = new Date(post.fechaCreacion);
             fechaPost = fechaPost.toDateString();
@@ -175,4 +168,96 @@ const creaCardTop = (e) => {
             cardsTop.insertAdjacentHTML('afterbegin', card);
         });
     })
+}
+
+const misPost = e => {
+    e.preventDefault();
+    mainContainer.innerHTML = `<h1 class="ms-5">All my Posts:</h1>`;
+    getPostConId((mPost) => {
+
+        mPost.forEach(post => {
+            let fechaPost = new Date(post.fechaCreacion);
+            fechaPost = fechaPost.toDateString();
+            const card = `
+            <div class="container col-sm-6 mt-3">
+                            <div class="card my-3">
+                                <a class="text-decoration-none text-dark" href="#">
+                                    <div class="card-body px-0">
+                                        <div class="d-flex container p-0">
+                                            <div>
+                                                <img class="mt-2 ms-3 border rounded-circle"
+                                                    src="https://www.shareicon.net/data/512x512/2016/07/26/802009_man_512x512.png"
+                                                    alt="Dev.to" width="35" height="35">
+                                            </div>
+                                            <div class="d-flex flex-column container ps-2">
+                                                <span class="fw-bold">RefaccionariApp-Team</span>
+                                                <span class="fw-light">${fechaPost}</span>
+                                                <h2 class="my-2 fw-bold">${post.titulo}</h2>
+                                                <div class="d-flex">
+                                                    <button type="button" class="btn fw-light button-tags">${post.tags[0]}</button>
+                                                    <button type="button"
+                                                        class="btn fw-light button-tags">${post.tags[1]}</button>
+                                                    <button type="button"
+                                                        class="btn fw-light button-tags">${post.tags[2]}</button>
+                                                        <button type="button"
+                                                        class="btn fw-light button-tags">${post.tags[3]}</button>
+                                                </div>
+                                                <div class="d-flex justify-content-between">
+                                                    <div class="mt-2">
+                                                        <button type="button" class="btn button-comment"><svg
+                                                                xmlns="http://www.w3.org/2000/svg"
+                                                                class="icon icon-tabler icon-tabler-heart" width="24"
+                                                                height="24" viewBox="0 0 24 24" stroke-width="1.5"
+                                                                stroke="#2c3e50" fill="none" stroke-linecap="round"
+                                                                stroke-linejoin="round">
+                                                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                                                <path
+                                                                    d="M19.5 13.572l-7.5 7.428l-7.5 -7.428m0 0a5 5 0 1 1 7.5 -6.566a5 5 0 1 1 7.5 6.572" />
+                                                            </svg> 27 Reactions</button>
+                                                        <button type="button" class="btn button-comment"><svg
+                                                                xmlns="http://www.w3.org/2000/svg"
+                                                                class="icon icon-tabler icon-tabler-message-circle"
+                                                                width="24" height="24" viewBox="0 0 24 24"
+                                                                stroke-width="1.5" stroke="#2c3e50" fill="none"
+                                                                stroke-linecap="round" stroke-linejoin="round">
+                                                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                                                <path d="M3 20l1.3 -3.9a9 8 0 1 1 3.4 2.9l-4.7 1" />
+                                                                <line x1="12" y1="12" x2="12" y2="12.01" />
+                                                                <line x1="8" y1="12" x2="8" y2="12.01" />
+                                                                <line x1="16" y1="12" x2="16" y2="12.01" />
+                                                            </svg> 3 Comments</button>
+                                                    </div>
+                                                    <div class="d-flex align-items-center">
+                        <button type="button" class="btn btn-warning mt-2 mx-2 button-save" onclick="irUpdatePost('${post.fireBaseId}')">Edit</button>
+                        <button type="button" class="btn btn-danger mt-2 mx-2 button-save" onclick="eliminaPost('${post.fireBaseId}')">Delete</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </a>
+                            </div>
+                        </div>`;
+
+            mainContainer.insertAdjacentHTML('beforeend', card);
+        });
+    })
+}
+
+const eliminaPost = (fireBaseId) => {
+    if (window.confirm("Do you really want to delete the post?")) {
+        deletePost(fireBaseId);
+
+    }
+    const delay = setTimeout(reload, 3000);
+
+    function reload() {
+        document.getElementById("avatar").click();
+    }
+
+}
+
+const irUpdatePost = (fireBaseId) => {
+    window.location.assign(`/updatePost.html?id=${fireBaseId}`)
 }
