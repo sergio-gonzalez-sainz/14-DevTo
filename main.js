@@ -259,5 +259,5 @@ const eliminaPost = (fireBaseId) => {
 }
 
 const irUpdatePost = (fireBaseId) => {
-    window.location.assign(`/updatePost.html?id=${fireBaseId}`)
+    window.location.assign(`./updatePost.html?id=${fireBaseId}`)
 }
