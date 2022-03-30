@@ -41,6 +41,9 @@
     height: 4rem;
 }
 
+.filterDate {
+    visibility: hidden;
+}
 
 
 input:focus {

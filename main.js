@@ -87,6 +87,7 @@ const cardsTop = document.getElementById('cardsTop');
 
 const creaCardTop = (e) => {
     e.preventDefault();
+
     cardsTop.innerHTML = '';
     getPost((body) => {
         // let keysBody = Object.keys(body);
@@ -176,3 +177,29 @@ const creaCardTop = (e) => {
         });
     })
 }
+
+let hiddenFilter = (state) => {
+    document.getElementById('filterDate').style.visibility = state;
+}
+
+document.getElementById('latest-tab').addEventListener('click', () => hiddenFilter('hidden') );
+document.getElementById('relevant-tab').addEventListener('click', () => hiddenFilter('hidden') );
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

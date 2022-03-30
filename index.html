@@ -170,22 +170,49 @@
                 </div>
                 <div class="col-sm-12 col-md-9 col-lg-6">
                     <!-- columna central aca van las cards -->
-
-                    <!-- Nav tabs -->
-                    <ul class="nav mt-4" id="myTab" role="tablist">
-                        <li class="nav-item" role="presentation">
-                            <p class="nav-link active button-tab fs-5" id="relevant-tab" data-bs-toggle="tab"
-                                data-bs-target="#relevant" role="tab">Relevant</p>
-                        </li>
-                        <li class="nav-item" role="presentation">
-                            <p class="nav-link button-tab fs-5" id="latest-tab" data-bs-toggle="tab"
-                                data-bs-target="#latest" role="tab">Latest</p>
-                        </li>
-                        <li class="nav-item" role="presentation">
-                            <p class="nav-link button-tab fs-5" id="top-tab" data-bs-toggle="tab" data-bs-target="#top"
-                                role="tab" onclick="creaCardTop(event);">Top</p>
-                        </li>
-                    </ul>
+                    <div class="d-flex justify-content-between">
+                        <!-- Nav tabs Category -->
+                        <div>
+                            <ul class="nav mt-4" id="myTab" role="tablist">
+                                <li class="nav-item" role="presentation">
+                                    <p class="nav-link active button-tab fs-5" id="relevant-tab" data-bs-toggle="tab"
+                                        data-bs-target="#relevant" role="tab">Relevant</p>
+                                </li>
+                                <li class="nav-item" role="presentation">
+                                    <p class="nav-link button-tab fs-5" id="latest-tab" data-bs-toggle="tab"
+                                        data-bs-target="#latest" role="tab">Latest</p>
+                                </li>
+                                <li class="nav-item" id='top-listener' role="presentation">
+                                    <p class="nav-link button-tab fs-5" id="top-tab" data-bs-toggle="tab" data-bs-target="#top"
+                                        role="tab" onclick="creaCardTop(event); hiddenFilter('visible')">Top</p>
+                                       
+                                </li>
+                            </ul>
+                        </div>
+                        <!-- Nav tabs filter by date -->
+                        <div id="filterDate" class="filterDate">
+                            <ul class="nav mt-4" id="myTab" role="tablist">
+                                <li class="nav-item" role="presentation">
+                                    <p class="nav-link active button-tab fs-5" id="relevant-tab" data-bs-toggle="tab"
+                                        data-bs-target="#relevant" role="tab">Week</p>
+                                </li>
+                                <li class="nav-item" role="presentation">
+                                    <p class="nav-link button-tab fs-5" id="latest-tab" data-bs-toggle="tab"
+                                        data-bs-target="#latest" role="tab">Month</p>
+                                </li>
+                                <li class="nav-item" role="presentation">
+                                    <p class="nav-link button-tab fs-5" id=""" data-bs-toggle="tab" data-bs-target="#top"
+                                        role="tab" onclick="">Year</p>
+                                </li>
+                                <li class="nav-item" role="presentation">
+                                    <p class="nav-link button-tab fs-5" id="" data-bs-toggle="tab" data-bs-target="#top"
+                                        role="tab" onclick="">Infinity</p>
+                                </li>
+                            </ul>
+                        </div>
+                        
+                    </div>
+                    
 
                     <!-- Tab panes -->
                     <div class="tab-content">
