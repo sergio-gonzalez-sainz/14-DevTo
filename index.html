@@ -174,19 +174,38 @@
                     <!-- columna central aca van las cards -->
 
                     <!-- Nav tabs -->
-                    <ul class="nav mt-4" id="myTab" role="tablist">
-                        <li class="nav-item" role="presentation">
-                            <p class="nav-link active button-tab fs-5" id="relevant-tab" data-bs-toggle="tab"
-                                data-bs-target="#relevant" role="tab">Relevant</p>
-                        </li>
-                        <li class="nav-item" role="presentation">
-                            <p class="nav-link button-tab fs-5" id="latest-tab" data-bs-toggle="tab"
-                                data-bs-target="#latest" role="tab">Latest</p>
-                        </li>
-                        <li class="nav-item" role="presentation">
-                            <p class="nav-link button-tab fs-5" id="top-tab" data-bs-toggle="tab" data-bs-target="#top"
-                                role="tab" onclick="creaCardTop(event);">Top</p>
-                        </li>
+                    <ul class="nav mt-4 d-flex justify-content-between" id="myTab" role="tablist">
+                        <div class="d-flex">
+                            <li class="nav-item" role="presentation">
+                                <p class="nav-link active button-tab fs-5" id="relevant-tab" data-bs-toggle="tab"
+                                    data-bs-target="#relevant" role="tab">Relevant</p>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <p class="nav-link button-tab fs-5" id="latest-tab" data-bs-toggle="tab"
+                                    data-bs-target="#latest" role="tab">Latest</p>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <p class="nav-link button-tab fs-5" id="top-tab" data-bs-toggle="tab"
+                                    data-bs-target="#top" role="tab" onclick="creaCardTop(event);">Top</p>
+                            </li>
+                        </div>
+                        <div class="d-flex">
+                            <li class="nav-item" role="presentation">
+                                <p class="nav-link button-tab fs-5" id="week-tab" data-bs-toggle="tab"
+                                    data-bs-target="#top" role="tab" onclick="weekFilter(event);">Week</p>
+                            </li>
+
+                            <li class="nav-item" role="presentation">
+                                <p class="nav-link button-tab fs-5" id="week-tab" data-bs-toggle="tab"
+                                    data-bs-target="#top" role="tab" onclick="monthFilter(event);">Month</p>
+                            </li>
+
+                            <li class="nav-item" role="presentation">
+                                <p class="nav-link button-tab fs-5" id="week-tab" data-bs-toggle="tab"
+                                    data-bs-target="#top" role="tab" onclick="yearFilter(event);">Year</p>
+                            </li>
+                        </div>
+
                     </ul>
 
                     <!-- Tab panes -->
