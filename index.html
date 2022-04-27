@@ -6,8 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="./stylesNoBootstrap.css">
 
@@ -21,43 +20,26 @@
         <div class="container px-4">
             <div class="d-flex col-sm-6">
                 <a class="navbar-brand" href="./index.html">
-                    <img src="https://dev-to-uploads.s3.amazonaws.com/uploads/logos/resized_logo_UQww2soKuUsjaOGNB38o.png"
-                        alt="Dev.to" width="50" height="40">
+                    <img src="https://dev-to-uploads.s3.amazonaws.com/uploads/logos/resized_logo_UQww2soKuUsjaOGNB38o.png" alt="Dev.to" width="50" height="40">
                 </a>
-                <form onsubmit="buscarPost(event)" class="col-sm-8 d-flex border border-2 rounded-3 mt-2"
-                    style="height: 35px;">
+                <form onsubmit="buscarPost(event)" class="col-sm-8 d-flex border border-2 rounded-3 mt-2" style="height: 35px;">
                     <input class="form-control form-control-sm border-0" type="search" placeholder="Search...">
                     <button class="btn p-0" type="submit"><svg xmlns="http://www.w3.org/2000/svg"
-                            class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24"
-                            stroke-width="1.5" stroke="#2c3e50" fill="none" stroke-linecap="round"
-                            stroke-linejoin="round">
-                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                            <circle cx="10" cy="10" r="7" />
-                            <line x1="21" y1="21" x2="15" y2="15" />
-                        </svg>
-                </form>
-            </div>
-            <div>
-                <a href="./createPost.html"><button type="button" class="btn btn-outline-primary">Create
-                        Post</button></a>
-                <button type="button" class="position-relative bg-white border-0">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-bell" width="32"
-                        height="32" viewBox="0 0 24 24" stroke-width="1.5" stroke="#2c3e50" fill="none"
-                        stroke-linecap="round" stroke-linejoin="round">
+                        class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24"
+                        stroke-width="1.5" stroke="#2c3e50" fill="none" stroke-linecap="round"
+                        stroke-linejoin="round">
                         <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                        <path
-                            d="M10 5a2 2 0 0 1 4 0a7 7 0 0 1 4 6v3a4 4 0 0 0 2 3h-16a4 4 0 0 0 2 -3v-3a7 7 0 0 1 4 -6" />
-                        <path d="M9 17v1a3 3 0 0 0 6 0v-1" />
+                        <circle cx="10" cy="10" r="7" />
+                        <line x1="21" y1="21" x2="15" y2="15" />
                     </svg>
-                    <span class="position-absolute top-40 start-55 translate-middle badge bg-danger">
-                        3
-                    </span>
-                </button>
-                <a href="">
-                    <img class="mx-2 rounded-circle"
-                        src="https://www.shareicon.net/data/512x512/2016/07/26/802009_man_512x512.png" alt="Dev.to"
-                        width="30" height="30" onclick="misPost(event);" id="avatar">
-                </a>
+            </form>
+        </div>
+        <div>
+            <a href="./login.html"><button type="button" class="btn btn-outline-primary">Log in</button></a>
+
+                    <button class="btn btn-outline-primary">
+                <a href="createAccount.html" class="button-account">Create account</a>
+            </button>
             </div>
         </div>
     </nav>
@@ -152,16 +134,15 @@
                         </div>
                         <div class="banner">
                             <div class="sl_row">
-                                <img src="https://res.cloudinary.com/practicaldev/image/fetch/s--H03EII_F--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_350/https://thepracticaldev.s3.amazonaws.com/i/yulj7krmm6s7owlk3l7d.jpg"
-                                    alt="">
+                                <img src="https://res.cloudinary.com/practicaldev/image/fetch/s--H03EII_F--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_350/https://thepracticaldev.s3.amazonaws.com/i/yulj7krmm6s7owlk3l7d.jpg" alt="">
                             </div>
                             <div class="sl_row1">
                                 <p>New Champion-Brand DEV Wear is Here!</p>
                             </div>
                         </div>
                         <div class="repo">
-                            <p>DEV runs on 100% open source code known as Forem. Contribute to the codebase or host your
-                                own!</p>
+                            <p>DEV runs on 100% open source code known as Forem. Contribute to the codebase or host your own!
+                            </p>
                             <p class="check">Check this out! 👇🏻</p>
                             <ul>
                                 <li><a href="#">Main Forem Repo</a></li>
@@ -177,32 +158,26 @@
                     <ul class="nav mt-4 d-flex justify-content-between" id="myTab" role="tablist">
                         <div class="d-flex">
                             <li class="nav-item" role="presentation">
-                                <p class="nav-link  button-tab fs-5" id="relevant-tab" data-bs-toggle="tab"
-                                    data-bs-target="#relevant" role="tab">Relevant</p>
+                                <p class="nav-link  button-tab fs-5" id="relevant-tab" data-bs-toggle="tab" data-bs-target="#relevant" role="tab">Relevant</p>
                             </li>
                             <li class="nav-item" role="presentation">
-                                <p class="nav-link active button-tab fs-5" id="latest-tab" data-bs-toggle="tab"
-                                    data-bs-target="#latest" role="tab">Latest</p>
+                                <p class="nav-link active button-tab fs-5" id="latest-tab" data-bs-toggle="tab" data-bs-target="#latest" role="tab">Latest</p>
                             </li>
                             <li class="nav-item" role="presentation">
-                                <p class="nav-link button-tab fs-5" id="top-tab" data-bs-toggle="tab"
-                                    data-bs-target="#top" role="tab">Top</p>
+                                <p class="nav-link button-tab fs-5" id="top-tab" data-bs-toggle="tab" data-bs-target="#top" role="tab">Top</p>
                             </li>
                         </div>
                         <div class="d-flex">
                             <li class="nav-item" role="presentation">
-                                <p class="nav-link button-tab fs-5" id="week-tab" data-bs-toggle="tab"
-                                    data-bs-target="#top" role="tab" onclick="weekFilter(event);">Week</p>
+                                <p class="nav-link button-tab fs-5" id="week-tab" data-bs-toggle="tab" data-bs-target="#top" role="tab" onclick="weekFilter(event);">Week</p>
                             </li>
 
                             <li class="nav-item" role="presentation">
-                                <p class="nav-link button-tab fs-5" id="week-tab" data-bs-toggle="tab"
-                                    data-bs-target="#top" role="tab" onclick="monthFilter(event);">Month</p>
+                                <p class="nav-link button-tab fs-5" id="week-tab" data-bs-toggle="tab" data-bs-target="#top" role="tab" onclick="monthFilter(event);">Month</p>
                             </li>
 
                             <li class="nav-item" role="presentation">
-                                <p class="nav-link button-tab fs-5" id="week-tab" data-bs-toggle="tab"
-                                    data-bs-target="#top" role="tab" onclick="yearFilter(event);">Year</p>
+                                <p class="nav-link button-tab fs-5" id="week-tab" data-bs-toggle="tab" data-bs-target="#top" role="tab" onclick="yearFilter(event);">Year</p>
                             </li>
                         </div>
 
@@ -211,27 +186,27 @@
                     <!-- Tab panes -->
                     <!-- <div class="tab-content">
                         <div class="tab-pane active" id="relevant" role="tabpanel"> -->
-                            <!-- Aqui va el content de la tab Relevant -->                    
+                    <!-- Aqui va el content de la tab Relevant -->
 
-                            <!-- Termina tab relevant -->
-                        <!-- </div>
+                    <!-- Termina tab relevant -->
+                    <!-- </div>
                         <div class="tab-pane" id="latest" role="tabpanel"> -->
 
-                            <!-- Aqui va el content de la tab Latest -->
-                           
-                            <!-- Termina tab Latest -->
-                        <!-- </div>
+                    <!-- Aqui va el content de la tab Latest -->
+
+                    <!-- Termina tab Latest -->
+                    <!-- </div>
                         <div class="tab-pane" id="top" role="tabpanel"> -->
-                            <!-- Aqui va el content de la tab Top -->
-                            
-                            <!-- Termina tab Top -->
-                        <!-- </div>
+                    <!-- Aqui va el content de la tab Top -->
+
+                    <!-- Termina tab Top -->
+                    <!-- </div>
                     </div> -->
 
 
-                            <div id="cardsTop">
+                    <div id="cardsTop">
 
-                            </div>
+                    </div>
 
 
                 </div>
@@ -458,8 +433,7 @@
             </div>
         </div>
 
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
-            integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous">
         </script>
         <script src="//cdn.jsdelivr.net/editor/0.1.0/editor.js"></script>
         <script src="//cdn.jsdelivr.net/editor/0.1.0/marked.js"></script>
