@@ -27,11 +27,9 @@
 }
 
 ::-webkit-input-placeholder #postTitle {
-
     color: rgb(102, 102, 102);
     font-weight: 700;
     font-size: 3rem;
-
 }
 
 #postTitle {
@@ -41,8 +39,6 @@
     height: 4rem;
 }
 
-
-
 input:focus {
     outline: none;
 }
@@ -50,3 +46,6 @@ input:focus {
 #postBody {
     display: none;
 }
+
+
+/* my styles */
