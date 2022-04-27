@@ -1,47 +1,45 @@
 let editor2 = new Editor({
-    element: document.getElementById('postBodyEdit'),
-    status: []
+  element: document.getElementById("postBodyEdit"),
+  status: [],
 });
 
 editor2.render();
 
-var imagenUrl = '';
+var imageUrl = "";
 const addCoverImage = (e) => {
-    e.preventDefault();
-    imagenUrl = prompt('Image URL:');
-}
+  e.preventDefault();
+  imageUrl = prompt("Image URL:");
+};
 
 const queryParams = new URLSearchParams(window.location.search);
-const id = queryParams.get('id');
-
-
+const id = queryParams.get("id");
 
 const updatePost = (e) => {
-    e.preventDefault();
+  e.preventDefault();
 
-    let post = {};
-    post['titulo'] = document.getElementById('postTitle').value;
-    post['imagenPortada'] = imagenUrl;
-    post['contenido'] = editor2.codemirror.getValue();
-    post['fechaCreacion'] = document.getElementById('postDate').value;
-    post['tags'] = document.getElementById('postTags').value.split(',');
-    post['fireBaseId'] = id;
+  let post = {};
+  post["title"] = document.getElementById("postTitle").value;
+  post["image"] = imageUrl;
+  post["content"] = editor2.codemirror.getValue();
+  post["date"] = document.getElementById("postDate").value;
+  post["tags"] = document.getElementById("postTags").value;
+  post["id"] = id;
 
-    putPost(
-        post.titulo,
-        post.imagenPortada,
-        post.contenido,
-        post.fechaCreacion,
-        post.tags,
-        post.fireBaseId,
-        (body) => {
-            alert('Post updated successfully!');
+  putPost(
+    post.title,
+    post.image,
+    post.content,
+    post.date,
+    post.tags,
+    post.id,
+    (body) => {
+      alert("Post updated successfully!");
 
-            const delay = setTimeout(reload, 1000);
+      const delay = setTimeout(reload, 1000);
 
-            function reload() {
-                document.getElementById("home").click();
-            }
-        }
-    )
-}
+      function reload() {
+        document.getElementById("home").click();
+      }
+    }
+  );
+};

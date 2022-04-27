@@ -1,16 +1,14 @@
-const abrirPost = (titulo) => {
-    getPost((body) => {
-        let arregloPost = Object.values(body);
-        let postDetail = arregloPost.filter((post) =>
-            titulo == post.titulo)
+const abrirPost = (title) => {
+  getPost((body) => {
+    let arregloPost = Object.values(body);
+    let postDetail = arregloPost.filter((post) => title == post.title);
 
-        postDetail.forEach(post => {
-            let fechaPost = new Date(post.fechaCreacion);
-            fechaPost = fechaPost.toDateString();
-            mainContainer.innerHTML = '';
-            post.contenido = marked.parse(post.contenido);
-            const card =
-                `
+    postDetail.forEach((post) => {
+      let fechaPost = new Date(post.date);
+      fechaPost = fechaPost.toDateString();
+      mainContainer.innerHTML = "";
+      post.content = marked.parse(post.content);
+      const card = `
                     <div class="container d-flex">
         <div class="col-1">
             <div class="my-5">
@@ -57,7 +55,7 @@ const abrirPost = (titulo) => {
         <div class="col-sm-8 mt-3">
             <div class="card my-3">
                 <a class="text-decoration-none text-dark" href="#">
-                    <img src="${post.imagenPortada}" class="card-img-top" alt="main_image">
+                    <img src="${post.image}" class="card-img-top" alt="main_image">
                     <div class="card-body px-0">
                         <div class="d-flex container p-0">
                             <div>
@@ -68,15 +66,12 @@ const abrirPost = (titulo) => {
                             <div class="d-flex flex-column container ps-2">
                                 <span class="fw-bold">RefaccionariApp-Team</span>
                                 <span class="fw-light">Posted on ${fechaPost}</span>
-                                <h1 class="my-2 fw-bold">${post.titulo}</h1>
+                                <h1 class="my-2 fw-bold">${post.title}</h1>
                                 <div class="d-flex">
-                                    <button type="button" class="btn fw-light button-tags">${post.tags[0]}</button>
-                                    <button type="button" class="btn fw-light button-tags">${post.tags[1]}</button>
-                                    <button type="button" class="btn fw-light button-tags">${post.tags[2]}</button>
-                                    <button type="button" class="btn fw-light button-tags">${post.tags[3]}</button>
+                                    <button type="button" class="btn fw-light button-tags">${post.tags}</button>
                                 </div>
                                 <div class = "container col-10 d-flex flex-column p-0 m-0">
-                                ${post.contenido}
+                                ${post.content}
                                 </div>
                             </div>
                         </div>
@@ -86,7 +81,7 @@ const abrirPost = (titulo) => {
         </div>
     </div>
                 `;
-            mainContainer.insertAdjacentHTML('beforeend', card);
-        })
-    })
-}
+      mainContainer.insertAdjacentHTML("beforeend", card);
+    });
+  });
+};

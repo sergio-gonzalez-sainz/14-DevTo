@@ -1,44 +1,47 @@
+let fechaPost = new Date();
+fechaPost = fechaPost.toDateString();
+
 let editor = new Editor({
-    element: document.getElementById('postBody'),
-    status: []
+  element: document.getElementById("postBody"),
+  status: [],
 });
 editor.render();
 
-var imagenUrl = '';
+var imageUrl = "";
 const addCoverImage = (e) => {
-    e.preventDefault();
-    imagenUrl = prompt('Image URL:');
-}
+  e.preventDefault();
+  imageUrl = prompt("Image URL:");
+};
 
 const crearPost = (e) => {
-    e.preventDefault();
-    let post = {};
-    post['titulo'] = document.getElementById('postTitle').value;
-    post['imagenPortada'] = imagenUrl;
-    post['contenido'] = editor.codemirror.getValue();
-    post['fechaCreacion'] = document.getElementById('postDate').value;
-    post['tags'] = document.getElementById('postTags').value.split(',');
+  e.preventDefault();
+  let post = {};
+  post["title"] = document.getElementById("postTitle").value;
+  post["image"] = imageUrl;
+  post["content"] = editor.codemirror.getValue();
+  post["date"] = fechaPost;
+  post["tags"] = document.getElementById("postTags").value;
 
-    postPost(
-        post.titulo,
-        post.imagenPortada,
-        post.contenido,
-        post.fechaCreacion,
-        post.tags,
-        (body) => {
-            alert('Post published successfully!');
+  postPost(
+    post.title,
+    post.image,
+    post.content,
+    post.date,
+    post.tags,
+    (body) => {
+      alert("Post published successfully!");
 
-            const delay = setTimeout(reload, 1000);
+      const delay = setTimeout(reload, 1000);
 
-            function reload() {
-                document.getElementById("home").click();
-            }
-        }
-    )
-}
+      function reload() {
+        document.getElementById("home").click();
+      }
+    }
+  );
+};
 
-const delay = setTimeout(reload, 3000);
+// const delay = setTimeout(reload, 3000);
 
-function reload() {
-    document.getElementById("avatar").click();
-}
+// function reload() {
+//   document.getElementById("avatar").click();
+// }

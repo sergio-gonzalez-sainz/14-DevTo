@@ -1,23 +1,24 @@
 let fecha = new Date();
+const buscarInput = document.querySelector("input");
+const mainContainer = document.getElementById("mainContainer");
 
-const buscarInput = document.querySelector('input');
-const mainContainer = document.getElementById('mainContainer');
+const buscarPost = (e) => {
+  e.preventDefault();
+  const terminoBusqueda = buscarInput.value;
+  mainContainer.innerHTML = `<h1 class="ms-5">Search results for ${terminoBusqueda}</h1>`;
 
-const buscarPost = e => {
-    e.preventDefault();
-    const terminoBusqueda = buscarInput.value;
-    mainContainer.innerHTML = `<h1 class="ms-5">Search results for ${terminoBusqueda}</h1>`;
+  getPost((body) => {
+    let arregloPost = Object.values(body);
+    let resultadoBusqueda = arregloPost.filter(
+      (post) =>
+        post.title.toLowerCase().indexOf(terminoBusqueda.toLowerCase()) > -1
+    );
+    // console.log(resultadoBusqueda); //aqui esta el resultado de la busqueda
 
-    getPost((body) => {
-        let arregloPost = Object.values(body);
-        let resultadoBusqueda = arregloPost.filter((post) =>
-            post.titulo.toLowerCase().indexOf(terminoBusqueda.toLowerCase()) > -1)
-        console.log(resultadoBusqueda); //aui esta el resultado de la busqueda
-
-        resultadoBusqueda.forEach(post => {
-            let fechaPost = new Date(post.fechaCreacion);
-            fechaPost = fechaPost.toDateString();
-            const card = `<div class="container col-sm-6 mt-3" onclick="abrirPost('${post.titulo}')">
+    resultadoBusqueda.forEach((post) => {
+      let fechaPost = new Date(post.date);
+      fechaPost = fechaPost.toDateString();
+      const card = `<div class="container col-sm-6 mt-3" onclick="abrirPost('${post.title}')">
                             <div class="card my-3">
                                 <a class="text-decoration-none text-dark" href="#">
                                     <div class="card-body px-0">
@@ -30,13 +31,9 @@ const buscarPost = e => {
                                             <div class="d-flex flex-column container ps-2">
                                                 <span class="fw-bold">RefaccionariApp-Team</span>
                                                 <span class="fw-light">${fechaPost}</span>
-                                                <h2 class="my-2 fw-bold">${post.titulo}</h2>
+                                                <h2 class="my-2 fw-bold">${post.title}</h2>
                                                 <div class="d-flex">
-                                                    <button type="button" class="btn fw-light button-tags">${post.tags[0]}</button>
-                                                    <button type="button"
-                                                        class="btn fw-light button-tags">${post.tags[1]}</button>
-                                                    <button type="button"
-                                                        class="btn fw-light button-tags">${post.tags[2]}</button>
+                                                    <button type="button" class="btn fw-light button-tags">${post.tags}</button>
                                                 </div>
                                                 <div class="d-flex justify-content-between">
                                                     <div class="mt-2">
@@ -77,36 +74,35 @@ const buscarPost = e => {
                             </div>
                         </div>`;
 
-            mainContainer.insertAdjacentHTML('beforeend', card);
-        });
-    })
-}
+      mainContainer.insertAdjacentHTML("beforeend", card);
+    });
+  });
+};
 
-const cardsTop = document.getElementById('cardsTop');
-
-
-const creaCardTop = (e) => {
-    e.preventDefault();
-    cardsTop.innerHTML = '';
-    getPost((body) => {
-        let arregloPost = Object.values(body);
-        arregloPost.forEach((post, index, array) => {
-            let fechaPost = new Date(post.fechaCreacion);
-            fechaPost = fechaPost.toDateString();
-            let imagenCard = '';
-            if (index == (array.length - 1)) {
-                imagenCard = `
-                <img src = ${post.imagenPortada}
+const cardsTop = document.getElementById("cardsTop");
+cardsTop.innerHTML = "algo";
+const creaCardTop = () => {
+  //   e.preventDefault();
+  cardsTop.innerHTML = "";
+  getPost((body) => {
+    let arregloPost = Object.values(body);
+    arregloPost.forEach((post, index, array) => {
+      let fechaPost = new Date(post.date);
+      fechaPost = fechaPost.toDateString();
+      let imageCard = "";
+      if (index == array.length - 1) {
+        imageCard = `
+                <img src = ${post.image}
                 class = "card-img-top"
                 alt = "main_image">
                 `;
-            } else {
-                imagenCard = '';
-            }
-            let card = `    
-                            <div class="card mb-3" onclick="abrirPost('${post.titulo}')">
+      } else {
+        imageCard = "";
+      }
+      let card = `    
+                            <div class="card mb-3" onclick="abrirPost('${post.title}')">
                                 <a class="text-decoration-none text-dark" href="#">
-                                   ${imagenCard}
+                                   ${imageCard}
                                     <div class="card-body px-0">
                                         <div class="d-flex container p-0">
                                             <div>
@@ -117,14 +113,9 @@ const creaCardTop = (e) => {
                                             <div class="d-flex flex-column container ps-2">
                                                 <span class="fw-bold">RefaccionariApp-Team</span>
                                                 <span class="fw-light">${fechaPost}</span>
-                                                <h2 class="my-2 fw-bold">${post.titulo}</h2>
+                                                <h2 class="my-2 fw-bold">${post.title}</h2>
                                                 <div class="d-flex">
-                                                    <button type="button" class="btn fw-light button-tags">${post.tags[0]}</button>
-                                                    <button type="button"
-                                                        class="btn fw-light button-tags">${post.tags[1]}</button>
-                                                    <button type="button"
-                                                        class="btn fw-light button-tags">${post.tags[2]}</button>
-                                                    <button type="button" class="btn fw-light button-tags">${post.tags[3]}</button>
+                                                    <button type="button" class="btn fw-light button-tags">${post.tags}</button>
                                                 </div>
                                                 <div class="d-flex justify-content-between">
                                                     <div class="mt-2">
@@ -165,20 +156,19 @@ const creaCardTop = (e) => {
                             </div>
                         `;
 
-            cardsTop.insertAdjacentHTML('afterbegin', card);
-        });
-    })
-}
+      cardsTop.insertAdjacentHTML("afterbegin", card);
+    });
+  });
+};
 
-const misPost = e => {
-    e.preventDefault();
-    mainContainer.innerHTML = `<h1 class="ms-5">All my Posts:</h1>`;
-    getPostConId((mPost) => {
-
-        mPost.forEach(post => {
-            let fechaPost = new Date(post.fechaCreacion);
-            fechaPost = fechaPost.toDateString();
-            const card = `
+const misPost = (e) => {
+  e.preventDefault();
+  mainContainer.innerHTML = `<h1 class="ms-5">All my Posts:</h1>`;
+  getPost((mPost) => {
+    mPost.forEach((post) => {
+      let fechaPost = new Date(post.date);
+      fechaPost = fechaPost.toDateString();
+      const card = `
             <div class="container col-sm-6 mt-3">
                             <div class="card my-3">
                                 <a class="text-decoration-none text-dark" href="#">
@@ -192,15 +182,9 @@ const misPost = e => {
                                             <div class="d-flex flex-column container ps-2">
                                                 <span class="fw-bold">RefaccionariApp-Team</span>
                                                 <span class="fw-light">${fechaPost}</span>
-                                                <h2 class="my-2 fw-bold">${post.titulo}</h2>
+                                                <h2 class="my-2 fw-bold">${post.title}</h2>
                                                 <div class="d-flex">
-                                                    <button type="button" class="btn fw-light button-tags">${post.tags[0]}</button>
-                                                    <button type="button"
-                                                        class="btn fw-light button-tags">${post.tags[1]}</button>
-                                                    <button type="button"
-                                                        class="btn fw-light button-tags">${post.tags[2]}</button>
-                                                        <button type="button"
-                                                        class="btn fw-light button-tags">${post.tags[3]}</button>
+                                                    <button type="button" class="btn fw-light button-tags">${post.tags}</button>
                                                 </div>
                                                 <div class="d-flex justify-content-between">
                                                     <div class="mt-2">
@@ -228,8 +212,8 @@ const misPost = e => {
                                                             </svg> 3 Comments</button>
                                                     </div>
                                                     <div class="d-flex align-items-center">
-                        <button type="button" class="btn btn-warning mt-2 mx-2 button-save" onclick="irUpdatePost('${post.fireBaseId}')">Edit</button>
-                        <button type="button" class="btn btn-danger mt-2 mx-2 button-save" onclick="eliminaPost('${post.fireBaseId}')">Delete</button>
+                        <button type="button" class="btn btn-warning mt-2 mx-2 button-save" onclick="irUpdatePost('${post._id}')">Edit</button>
+                        <button type="button" class="btn btn-danger mt-2 mx-2 button-save" onclick="eliminaPost('${post._id}')">Delete</button>
                                                     </div>
                                                 </div>
                                             </div>
@@ -240,48 +224,45 @@ const misPost = e => {
                             </div>
                         </div>`;
 
-            mainContainer.insertAdjacentHTML('beforeend', card);
-        });
-    })
-}
+      mainContainer.insertAdjacentHTML("beforeend", card);
+    });
+  });
+};
 
-const eliminaPost = (fireBaseId) => {
-    if (window.confirm("Do you really want to delete the post?")) {
-        deletePost(fireBaseId);
+const eliminaPost = (id) => {
+  if (window.confirm("Do you really want to delete the post?")) {
+    deletePost(id);
+  }
+  const delay = setTimeout(reload, 3000);
 
-    }
-    const delay = setTimeout(reload, 3000);
+  function reload() {
+    document.getElementById("avatar").click();
+  }
+};
 
-    function reload() {
-        document.getElementById("avatar").click();
-    }
-
-}
-
-const irUpdatePost = (fireBaseId) => {
-    window.location.assign(`./updatePost.html?id=${fireBaseId}`)
-}
-
+const irUpdatePost = (id) => {
+  window.location.assign(`./updatePost.html?id=${id}`);
+};
 
 // --------------
 
-const weekFilter = e => {
-    e.preventDefault();
-    mainContainer.innerHTML = `<h1 class="ms-5">Posts of the last week</h1>`;
+const weekFilter = (e) => {
+  e.preventDefault();
+  mainContainer.innerHTML = `<h1 class="ms-5">Posts of the last week</h1>`;
 
-    getPost((body) => {
-        let arregloPost = Object.values(body);
+  getPost((body) => {
+    let arregloPost = Object.values(body);
 
+    let fechaFiltrada = arregloPost.filter(
+      (post) => diasRestados(post.date) < 7
+    );
 
-        let fechaFiltrada = arregloPost.filter((post) =>
-            diasRestados(post.fechaCreacion) < 7)
+    // console.log(fechaFiltrada); //aui esta el resultado de la busqueda
 
-        console.log(fechaFiltrada); //aui esta el resultado de la busqueda
-
-        fechaFiltrada.forEach(post => {
-            let fechaPost = new Date(post.fechaCreacion);
-            fechaPost = fechaPost.toDateString();
-            const card = `<div class="container col-sm-6 mt-3" onclick="abrirPost('${post.titulo}')">
+    fechaFiltrada.forEach((post) => {
+      let fechaPost = new Date(post.date);
+      fechaPost = fechaPost.toDateString();
+      const card = `<div class="container col-sm-6 mt-3" onclick="abrirPost('${post.title}')">
                             <div class="card my-3">
                                 <a class="text-decoration-none text-dark" href="#">
                                     <div class="card-body px-0">
@@ -294,13 +275,9 @@ const weekFilter = e => {
                                             <div class="d-flex flex-column container ps-2">
                                                 <span class="fw-bold">RefaccionariApp-Team</span>
                                                 <span class="fw-light">${fechaPost}</span>
-                                                <h2 class="my-2 fw-bold">${post.titulo}</h2>
+                                                <h2 class="my-2 fw-bold">${post.title}</h2>
                                                 <div class="d-flex">
-                                                    <button type="button" class="btn fw-light button-tags">${post.tags[0]}</button>
-                                                    <button type="button"
-                                                        class="btn fw-light button-tags">${post.tags[1]}</button>
-                                                    <button type="button"
-                                                        class="btn fw-light button-tags">${post.tags[2]}</button>
+                                                    <button type="button" class="btn fw-light button-tags">${post.tags}</button>
                                                 </div>
                                                 <div class="d-flex justify-content-between">
                                                     <div class="mt-2">
@@ -341,28 +318,28 @@ const weekFilter = e => {
                             </div>
                         </div>`;
 
-            mainContainer.insertAdjacentHTML('beforeend', card);
-        });
-    })
-}
+      mainContainer.insertAdjacentHTML("beforeend", card);
+    });
+  });
+};
 
-const monthFilter = e => {
-    e.preventDefault();
-    mainContainer.innerHTML = `<h1 class="ms-5">Posts of the last week</h1>`;
+const monthFilter = (e) => {
+  e.preventDefault();
+  mainContainer.innerHTML = `<h1 class="ms-5">Posts of the last week</h1>`;
 
-    getPost((body) => {
-        let arregloPost = Object.values(body);
+  getPost((body) => {
+    let arregloPost = Object.values(body);
 
+    let fechaFiltrada = arregloPost.filter(
+      (post) => diasRestados(post.date) < 30
+    );
 
-        let fechaFiltrada = arregloPost.filter((post) =>
-            diasRestados(post.fechaCreacion) < 30)
+    // console.log(fechaFiltrada); //aui esta el resultado de la busqueda
 
-        console.log(fechaFiltrada); //aui esta el resultado de la busqueda
-
-        fechaFiltrada.forEach(post => {
-            let fechaPost = new Date(post.fechaCreacion);
-            fechaPost = fechaPost.toDateString();
-            const card = `<div class="container col-sm-6 mt-3" onclick="abrirPost('${post.titulo}')">
+    fechaFiltrada.forEach((post) => {
+      let fechaPost = new Date(post.date);
+      fechaPost = fechaPost.toDateString();
+      const card = `<div class="container col-sm-6 mt-3" onclick="abrirPost('${post.title}')">
                             <div class="card my-3">
                                 <a class="text-decoration-none text-dark" href="#">
                                     <div class="card-body px-0">
@@ -375,13 +352,9 @@ const monthFilter = e => {
                                             <div class="d-flex flex-column container ps-2">
                                                 <span class="fw-bold">RefaccionariApp-Team</span>
                                                 <span class="fw-light">${fechaPost}</span>
-                                                <h2 class="my-2 fw-bold">${post.titulo}</h2>
+                                                <h2 class="my-2 fw-bold">${post.title}</h2>
                                                 <div class="d-flex">
-                                                    <button type="button" class="btn fw-light button-tags">${post.tags[0]}</button>
-                                                    <button type="button"
-                                                        class="btn fw-light button-tags">${post.tags[1]}</button>
-                                                    <button type="button"
-                                                        class="btn fw-light button-tags">${post.tags[2]}</button>
+                                                    <button type="button" class="btn fw-light button-tags">${post.tags}</button>
                                                 </div>
                                                 <div class="d-flex justify-content-between">
                                                     <div class="mt-2">
@@ -422,28 +395,28 @@ const monthFilter = e => {
                             </div>
                         </div>`;
 
-            mainContainer.insertAdjacentHTML('beforeend', card);
-        });
-    })
-}
+      mainContainer.insertAdjacentHTML("beforeend", card);
+    });
+  });
+};
 
-const yearFilter = e => {
-    e.preventDefault();
-    mainContainer.innerHTML = `<h1 class="ms-5">Posts of the last week</h1>`;
+const yearFilter = (e) => {
+  e.preventDefault();
+  mainContainer.innerHTML = `<h1 class="ms-5">Posts of the last week</h1>`;
 
-    getPost((body) => {
-        let arregloPost = Object.values(body);
+  getPost((body) => {
+    let arregloPost = Object.values(body);
 
+    let fechaFiltrada = arregloPost.filter(
+      (post) => diasRestados(post.date) < 365
+    );
 
-        let fechaFiltrada = arregloPost.filter((post) =>
-            diasRestados(post.fechaCreacion) < 365)
+    // console.log(fechaFiltrada); //aui esta el resultado de la busqueda
 
-        console.log(fechaFiltrada); //aui esta el resultado de la busqueda
-
-        fechaFiltrada.forEach(post => {
-            let fechaPost = new Date(post.fechaCreacion);
-            fechaPost = fechaPost.toDateString();
-            const card = `<div class="container col-sm-6 mt-3" onclick="abrirPost('${post.titulo}')">
+    fechaFiltrada.forEach((post) => {
+      let fechaPost = new Date(post.date);
+      fechaPost = fechaPost.toDateString();
+      const card = `<div class="container col-sm-6 mt-3" onclick="abrirPost('${post.title}')">
                             <div class="card my-3">
                                 <a class="text-decoration-none text-dark" href="#">
                                     <div class="card-body px-0">
@@ -456,13 +429,9 @@ const yearFilter = e => {
                                             <div class="d-flex flex-column container ps-2">
                                                 <span class="fw-bold">RefaccionariApp-Team</span>
                                                 <span class="fw-light">${fechaPost}</span>
-                                                <h2 class="my-2 fw-bold">${post.titulo}</h2>
+                                                <h2 class="my-2 fw-bold">${post.title}</h2>
                                                 <div class="d-flex">
-                                                    <button type="button" class="btn fw-light button-tags">${post.tags[0]}</button>
-                                                    <button type="button"
-                                                        class="btn fw-light button-tags">${post.tags[1]}</button>
-                                                    <button type="button"
-                                                        class="btn fw-light button-tags">${post.tags[2]}</button>
+                                                    <button type="button" class="btn fw-light button-tags">${post.tags}</button>
                                                 </div>
                                                 <div class="d-flex justify-content-between">
                                                     <div class="mt-2">
@@ -503,15 +472,17 @@ const yearFilter = e => {
                             </div>
                         </div>`;
 
-            mainContainer.insertAdjacentHTML('beforeend', card);
-        });
-    })
-}
+      mainContainer.insertAdjacentHTML("beforeend", card);
+    });
+  });
+};
 
-const diasRestados = (fechaCreacion) => {
-    let hoy = Date.now();
-    let fechaP = Date.parse(fechaCreacion);
-    let restaDias = Math.abs(fechaP - hoy);
-    let days = restaDias / (1000 * 3600 * 24);
-    return days;
-}
+const diasRestados = (date) => {
+  let hoy = Date.now();
+  let fechaP = Date.parse(date);
+  let restaDias = Math.abs(fechaP - hoy);
+  let days = restaDias / (1000 * 3600 * 24);
+  return days;
+};
+
+creaCardTop();
